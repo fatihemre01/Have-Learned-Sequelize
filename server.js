@@ -42,7 +42,7 @@ sequelize.sync().then(() => {
 app.get("/insert", async(req, res) => {
     try {
         await Book.create({
-            title: "Adventure-3",
+            title: "Title-1",
             author: "Fatih"
         }),
         res.json("Inserted!")
@@ -77,20 +77,6 @@ app.get("/getone", async(req, res) => {
     }
 })
 
-app.get("/delete", async(req, res) => {
-    try {
-        const book = await Book.destroy({
-            where: {
-                id : "2"
-            }
-        })
-        res.json(book)
-        console.log(book)
-    } catch (error) {
-        console.log(error)
-    }
-})
-
 app.get("/update", async(req, res) => {
     try {
         const book = await Book.update(
@@ -104,8 +90,18 @@ app.get("/update", async(req, res) => {
     }
 })
 
-
-
-
+app.get("/delete", async(req, res) => {
+    try {
+        const book = await Book.destroy({
+            where: {
+                id : "2"
+            }
+        })
+        res.json(book)
+        console.log(book)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 app.listen(3000)
